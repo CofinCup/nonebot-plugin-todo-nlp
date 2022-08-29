@@ -1,0 +1,85 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+* {box-sizing: border-box;}
+html,body,div,ul,ol,li,span,p,a,b,i,h1,h2,h3,img,input,select,textarea,button{margin:0;padding:0;border:0}
+ul,ol,li{list-style:none;}
+
+main {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    justify-content: center;
+    background-color: #1e272e;
+}
+
+.task_tit{
+	width:180px;
+	font-size: 20px;
+	color: #d2dae2;
+	padding-bottom: 22px;	
+	position: relative;
+}
+.task_tit::after{
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 90%;
+	height: 1px;
+	background-image: linear-gradient(to right, #d2dae2 0%, #d2dae2 50%, transparent 50%);
+	background-size: 8px 1px;
+	background-repeat: repeat-x;
+	margin: 0 auto;
+}
+
+.task_con {
+    width: 500px;
+	margin-top: 28px;
+}
+.task_con .task_con_li{
+	margin-bottom: 38px;
+}
+.task_con .task_con_li .date{
+	font-size: 18px;
+	color: #d2dae2;
+}
+.task_con_li ul{
+	margin-top: 10px;
+}
+.task_con_li li {    
+    color: #d2dae2;
+    font-size: 16px;
+    margin: 0 0 18px;
+}
+
+.task_con_li li .process{
+    width: 100%;
+    display: block;
+    height: 16px;
+    background-color: #1f4a59;
+    position: relative;
+    border-radius: 6px;
+	position: relative;
+	margin-top: 10px;
+}
+
+.task_con_li li::before{
+    box-shadow: 0 0 6px rgba(75,207,250,0.2)
+}
+
+.task_con_li li span{
+    position: absolute;
+    bottom: 0;
+    height: 16px;
+    border-radius: 6px;
+    display: block;
+    background-image: linear-gradient(
+        90deg,
+        #0fbcf9,
+        #34e7e4
+    );
+}

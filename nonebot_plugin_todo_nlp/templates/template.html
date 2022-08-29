@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" , content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="stylesheet" href="./css/style.css">
+		<title>Todo_List</title>
+	</head>
+	<body>
+		<main>
+			<div class="task_wrap">
+				<p class="task_tit">任务清单</p>
+				<ul class="task_con">
+                    {% for date, time_left, tokens_on_date in list_by_date %}
+					<li class="task_con_li">
+						<p class="date">{{date}} (距离ddl还有：{{time_left}}天)</p>
+						<ul>
+                            {% for token in tokens_on_date %}
+							<li>
+                                {{token.name}}
+								<div class="process">
+									<span style="width:{{token.percentage}}%"></span>
+								</div>
+							</li>
+                            {%endfor%}
+						</ul>
+					</li>
+                    {%endfor%}
+				</ul>
+			</div>
+		</main>
+	</body>

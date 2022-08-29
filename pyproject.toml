@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "nonebot-plugin-todo-nlp"
+version = "0.1.1"
+description = "一款自动识别提醒内容，可生成todo图片并定时推送的nonebot插件"
+authors = ["CofinCup <864341840@qq.com>"]
+license = "MIT License"
+readme = "README.md"
+packages = [{include = "nonebot_plugin_todo_nlp"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+jionlp = "^1.4.17"
+nonebot2 = "^2.0.0-beta.5"
+pandas = "^1.4.3"
+nonebot-plugin-htmlrender = "^0.1.1"
+pathlib = "^1.0.1"
+nonebot-plugin-apscheduler = "^0.1.4"
+
+[tool.poetry.dev-dependencies]
+pandas = "^1.4.3"
+nonebot2 = "^2.0.0-beta.5"
+jionlp = "^1.4.17"
+nonebot-plugin-htmlrender = "^0.1.1"
+pathlib = "^1.0.1"
+nonebot-plugin-apscheduler = "^0.1.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
