@@ -15,8 +15,8 @@ class Config(BaseSettings):
     # plugin custom config
     plugin_setting: str = "default"
 
-    todo_qq_friends: list[int] = []
-    todo_qq_groups: list[int] = []
+    todo_users: list[int] = []
+    todo_groups: list[int] = []
 
     todo_send_time: list[Time()] = []
 
