@@ -12,6 +12,36 @@ nlp支持来源于[jionlp](https://github.com/dongrixinyu/JioNLP) （十分便�
 * 允许多样化的日期描述方法，可以在语句中包含“明天”、“9月1日”等日期提示
 * 自动识别语句中的事项
 
+### 安装
+
+#### 从 PyPI 安装（推荐）
+
+- 使用 nb-cli  
+
+```
+nb plugin install nonebot_plugin_todo_nlp
+2022-08-29:等一个pull request merged，暂时用不了
+```
+
+- 使用 poetry
+
+```
+poetry add nonebot_plugin_todo_nlp
+```
+
+- 使用 pip
+
+```
+pip install nonebot_plugin_todo_nlp
+```
+
+#### 从 GitHub 安装（不推荐）
+
+```
+git clone https://github.com/Jigsaw111/nonebot_plugin_todo.git
+```
+
+
 ### 食用方法：
 触发关键词：
 * 增加事项: '提醒', 'nonebot_todo'
