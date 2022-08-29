@@ -13,7 +13,7 @@ def main():
     dis = get_dis()
     setup(
         name="nonebot-plugin-todo",
-        version="0.1.0",
+        version="0.1.3",
         url="https://github.com/CofinCup/nonebot_plugin_todo",
         packages=packages,
         keywords=["nonebot", "todo", "todo_list"],

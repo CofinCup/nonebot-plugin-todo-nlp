@@ -124,7 +124,7 @@ async def send_todo():
     for group in plugin_config.todo_groups:
         todo_util = TodoUtil(str(group))
         img = await todo_util.get_list_img()
-        await nonebot.get_bot().send_private_msg(user_id=group, message=MessageSegment.image(img))
+        await nonebot.get_bot().send_group_msg(group_id=group, message=MessageSegment.image(img))
         time.sleep(5)
         # 防止风控
 

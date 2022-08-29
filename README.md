@@ -1,6 +1,6 @@
 # nonebot-plugin-todo-nlp
 
-一款自动识别提醒内容，可生成todo图片并定时推送的nonebot插件
+一款自动识别提醒内容，可生成todo图片并定时推送的nonebot2插件，v11适配器可用
 
 nlp支持来源于[jionlp](https://github.com/dongrixinyu/JioNLP) （十分便利的nlp库）
 
@@ -22,14 +22,14 @@ nlp支持来源于[jionlp](https://github.com/dongrixinyu/JioNLP) （十分便�
 
 > 若要强调事件名称（nlp有的时候会犯蠢，比如在示例中机器人没能识别出“中秋假期”这一关键词）：使用英文双引号括上事项名称
 
-> **由于nonebot使用的uvicorn框架，在windows平台使用时图片的导出可能会出现not implemented error。**\
-> 解决方法：将env中的FASTAPI_RELOAD改为false！**
-> 见nonebot-plugin-htmlrender [issue#25](https://github.com/kexue-z/nonebot-plugin-htmlrender/issues/25) ，
-> 在nonebot2文档中对此亦有提及。
+> **由于nonebot使用uvicorn框架，在windows平台使用时图片的导出可能会出现not implemented error。**\
+> 解决方法：将env中的FASTAPI_RELOAD改为false。\
+> 见nonebot-plugin-htmlrender [issue#25](https://github.com/kexue-z/nonebot-plugin-htmlrender/issues/25) ;\
+> nonebot2文档中对此亦有提及，见[fastapi_reload](https://nb2.baka.icu/docs/tutorial/choose-driver#fastapi_reload) 。
 
 ### 配置方法：
 在env中添加如同以下格式的配置（多个send time则多次推送，注意时间首位去0）：\
-在群聊中使用时，只有管理员和群主可以增删项目。
+在群聊中使用时，只有管理员和群主可以增删todo项目。
 ```
 TODO_USERS=["1234567890"]
 TODO_GROUPS=["1234567890"]
@@ -42,6 +42,7 @@ TODO_SEND_TIME=[{"HOUR":8,"MINUTE":0},{"HOUR":19,"MINUTE":34}]
 - [ ] 增加完成todo统计，对完成状况进行跟踪
 - [ ] 增加todo项目复用功能（比如每日/每周某天的提醒可以复用而不用手动再次添加）
 - [ ] 完善相关console log
+- [ ] 更加优雅的todo使用订阅与推送时间配置
 - [ ] （可能后期会加上其他的todo主题？）
 
 ### 示例：
