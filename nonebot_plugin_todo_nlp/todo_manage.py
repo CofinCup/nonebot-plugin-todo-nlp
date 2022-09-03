@@ -97,10 +97,13 @@ async def change_todo_time_handle(event: Union[PrivateMessageEvent, GroupMessage
     elif not name_valid:
         await add_todo.finish(name_error_doc)
     else:
-        todo_util.change_time(name, expire_time)
-        await change_todo_time.send(f"将{name}改至{expire_time}")
-        img = await todo_util.get_list_img()
-        await change_todo_time.finish(MessageSegment.image(img))
+        changed_count = todo_util.change_time(name, expire_time)
+        if not changed_count == 0:
+            await change_todo_time.send(f"将{name}改至{expire_time}")
+            img = await todo_util.get_list_img()
+            await change_todo_time.finish(MessageSegment.image(img))
+        else:
+            await change_todo_time.finish(f"没有名为{name}的项目。")
 
 
 @get_todo_pic.handle()

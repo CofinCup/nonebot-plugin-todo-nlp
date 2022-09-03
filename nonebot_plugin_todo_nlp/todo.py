@@ -1,3 +1,4 @@
+import pandas as pd
 import pandas.errors
 import os
 from nonebot_plugin_htmlrender import template_to_pic
@@ -164,8 +165,9 @@ class TodoList:
     def write_data(self):
         self._list.sort()
         if len(self._list) == 0:
-            df = None
+            df = pd.DataFrame(columns=['name', 'start_date', 'end_date', 'priority'])
             df.to_csv(self.path + '/' + self._user + '.csv', index=False)
+
         else:
             df = DataFrame()
             for token in self._list:
@@ -236,7 +238,7 @@ class TodoUtil:
         return self.todo_list.change_data(name, slot, content)
 
     def change_time(self, name: str, time: str):
-        return self.todo_list.change_data(name, 'time', time)
+        return self.todo_list.change_data(name, '_end_date', time)
 
     def finish_job(self, name: str):
         return self.remove_data(name)
