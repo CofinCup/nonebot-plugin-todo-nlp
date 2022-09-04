@@ -62,7 +62,7 @@ git clone https://github.com/Jigsaw111/nonebot_plugin_todo.git
 在env中添加如同以下格式的配置（多个send time则多次推送，**注意时间首位去0！**）：\
 在群聊中使用时，只有管理员和群主可以增删todo项目。
 私聊情况下，好友均可使用todo增删功能，此处配置是推送名单。
-（已知如果不配置todo_users会直接报错，由于不配置等同于“不允许任何人使用该插件”，所以我认为留着这个报错是正确的。）
+
 
 ```
 TODO_USERS=["1234567890"]
