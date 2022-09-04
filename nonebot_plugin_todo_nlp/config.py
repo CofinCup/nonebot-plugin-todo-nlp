@@ -1,5 +1,5 @@
+from typing import AnyStr, List
 from pydantic import BaseSettings, Extra, Field
-
 
 class Time(BaseSettings):
     hour: int = Field(0, alias="HOUR")
@@ -15,10 +15,10 @@ class Config(BaseSettings):
     # plugin custom config
     plugin_setting: str = "default"
 
-    todo_users: list[int] = []
-    todo_groups: list[int] = []
+    todo_users: List[str] = []
+    todo_groups: List[str] = []
 
-    todo_send_time: list[Time()] = []
+    todo_send_time: List[Time] = []
 
     class Config:
         extra = Extra.allow

@@ -1,3 +1,4 @@
+from typing import AnyStr, List
 import pandas as pd
 import pandas.errors
 import os
@@ -176,15 +177,15 @@ class TodoList:
             df.to_csv(self.path + '/' + self._user + '.csv', index=False)
 
     async def get_img(self):
-        list_by_date: list[(str, int, list[TodoToken])] = list[list[TodoToken]]()
+        list_by_date: List[(str, int, List[TodoToken])] = list()
         now_date = ""
         date_count = 0
-        now_date_token: list[TodoToken] = list()
+        now_date_token: List[TodoToken] = list()
         for token in self._list:
             if token.end_date != now_date:
                 date_count += 1
                 now_date = token.end_date
-                now_date_token = list[TodoToken]()
+                now_date_token:List[TodoToken] = list()
                 list_by_date.append((now_date, token.time_left, now_date_token))
             now_date_token.append(token)
 

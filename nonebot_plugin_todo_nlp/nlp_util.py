@@ -1,3 +1,4 @@
+from typing import AnyStr, List
 import jionlp as jio
 from typing import Union
 import re

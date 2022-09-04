@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Union
+from typing import Union, AnyStr, List
 import nonebot
 from nonebot import on_keyword
 from nonebot import require
