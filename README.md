@@ -40,9 +40,10 @@ pip install nonebot_plugin_todo_nlp
 git clone https://github.com/Jigsaw111/nonebot_plugin_todo.git
 ```
 
-
 ### 食用方法：
+
 触发关键词：
+
 * 增加事项: '提醒', 'nonebot_todo'
 * 完成事项: '完成'
 * 删除事项（支持正则表达式）: '删除', '去掉'
@@ -57,10 +58,12 @@ git clone https://github.com/Jigsaw111/nonebot_plugin_todo.git
 > nonebot2文档中对此亦有提及，见[fastapi_reload](https://nb2.baka.icu/docs/tutorial/choose-driver#fastapi_reload) 。
 
 ### 配置方法：
+
 在env中添加如同以下格式的配置（多个send time则多次推送，注意时间首位去0）：\
 在群聊中使用时，只有管理员和群主可以增删todo项目。
 私聊情况下，好友均可使用todo增删功能，此处配置是推送名单。
-（已知如果不配置todo_users会直接报错，而且我不准备）
+（已知如果不配置todo_users会直接报错，由于不配置等同于“不允许任何人使用该插件”，所以我认为留着这个报错是正确的。）
+
 ```
 TODO_USERS=["1234567890"]
 TODO_GROUPS=["1234567890"]
@@ -68,6 +71,7 @@ TODO_SEND_TIME=[{"HOUR":8,"MINUTE":0},{"HOUR":19,"MINUTE":34}]
 ```
 
 ### TODO：
+
 - [ ] 迁移到postgre数据库
 - [ ] 增加优先级相关功能支持
 - [ ] 增加完成todo统计，对完成状况进行跟踪
@@ -75,6 +79,14 @@ TODO_SEND_TIME=[{"HOUR":8,"MINUTE":0},{"HOUR":19,"MINUTE":34}]
 - [ ] 完善相关console log
 - [ ] 更加优雅的todo使用订阅与推送时间配置
 - [ ] （可能后期会加上其他的todo主题？）
+
+
+
+### 更新日志
+
+2022-9-4：适配python3.8
+
+
 
 ### 示例：
 
