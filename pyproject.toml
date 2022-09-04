@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nonebot-plugin-todo-nlp"
-version = "0.1.6"
+version = "0.1.7"
 description = "一款自动识别提醒内容，可生成todo图片并定时推送的nonebot2插件"
 authors = ["CofinCup <864341840@qq.com>"]
 license = "MIT license"
@@ -8,6 +8,7 @@ license = "MIT license"
 [tool.poetry.dependencies]
 python = "^3.8"
 jionlp = "^1.4.17"
+pandas = "^1.4.3"
 nonebot2 = "^2.0.0-beta.5"
 nonebot-plugin-htmlrender = "^0.1.1"
 pathlib = "^1.0.1"
