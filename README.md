@@ -63,7 +63,6 @@ git clone https://github.com/Jigsaw111/nonebot_plugin_todo.git
 在群聊中使用时，只有管理员和群主可以增删todo项目。
 私聊情况下，好友均可使用todo增删功能，此处配置是推送名单。
 
-
 ```
 TODO_USERS=["1234567890"]
 TODO_GROUPS=["1234567890"]
@@ -83,6 +82,8 @@ TODO_SEND_TIME=[{"HOUR":8,"MINUTE":0},{"HOUR":19,"MINUTE":34}]
 ### 更新日志
 
 2022-9-4：适配python3.8
+
+2023-1-20: 升级nonebot_plugin_apscheduler依赖
 
 ### 示例：
 
