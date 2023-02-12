@@ -2,11 +2,11 @@ from typing import AnyStr, List
 import jionlp as jio
 from typing import Union
 import re
-
+import time
 
 def get_time_from_text(text: str) -> (Union[str, None], bool, str):
     try:
-        res: dict = jio.parse_time(text)
+        res: dict = jio.parse_time(text,time.time())
         if res['type'] == 'time_point':
             time_point: str = res['time'][0][0:10]
             return time_point, True, ""
