@@ -85,6 +85,8 @@ TODO_SEND_TIME=[{"HOUR":8,"MINUTE":0},{"HOUR":19,"MINUTE":34}]
 
 2023-1-20: 升级nonebot_plugin_apscheduler依赖
 
+2023-2-14: 修复相对时间的调用问题，pypi已发版
+
 ### 示例：
 
 ![1.png](https://github.com/CofinCup/nonebot_plugin_todo_nlp/blob/master/readme_resource/1.png)
