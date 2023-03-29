@@ -1,5 +1,6 @@
 from typing import AnyStr, List
 import jionlp as jio
+import jieba.posseg as psg
 from typing import Union
 import re
 import time
@@ -21,13 +22,27 @@ def get_name_from_text(text: str) -> (Union[str, None], bool, str):
         if "\"" in text:
             name = "".join(re.findall(r'[\"](.*?)[\"]', text))
         else:
+            sp_wd = psg.lcut(text)
             keyphrases = jio.keyphrase.extract_keyphrase(text)
-            if len(keyphrases) > 1:
-                name = "".join(keyphrases)
-            elif len(keyphrases) == 0:
-                return None, False, "未发现事件名，拒绝。可以通过英文双引号来突出事件！"
+            flag = 0
+            second_v = "去"
+            for w,p in sp_wd:
+                if p == "v":
+                    if flag == 0:
+                        flag = 1
+                    else:
+                        second_v = w
+                        break
+            pattern1 = f"{first_v}.*?{kw[-1]}"
+            if len(keyphrases) == 1:
+                pattern2 = f"{kw[0]}"
+            elif len(keyphrases) > 1:
+                pattern2 = f"{kw[0]}.*?{kw[-1]}"
             else:
-                name = keyphrases[0]
+                return None, False, "未发现事件名，拒绝。可以通过英文双引号来突出事件！"
+            event_name1 = re.findall(pattern1, text4)[0]
+            event_name2 = re.findall(pattern2, text4)[0]
+            name = event_name1 if len(event_name1) > len(event_name2) else event_name2
         return name, True, ""
     except ValueError or RuntimeError:
         return None, False, "未发现事件名，拒绝。可以通过英文双引号来突出事件！"
