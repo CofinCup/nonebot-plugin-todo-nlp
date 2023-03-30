@@ -33,15 +33,15 @@ def get_name_from_text(text: str) -> (Union[str, None], bool, str):
                     else:
                         second_v = w
                         break
-            pattern1 = f"{first_v}.*?{kw[-1]}"
+            pattern1 = f"{first_v}.*?{keyphrases[-1]}"
             if len(keyphrases) == 1:
-                pattern2 = f"{kw[0]}"
+                pattern2 = f"{keyphrases[0]}"
             elif len(keyphrases) > 1:
-                pattern2 = f"{kw[0]}.*?{kw[-1]}"
+                pattern2 = f"{keyphrases[0]}.*?{keyphrases[-1]}"
             else:
                 return None, False, "未发现事件名，拒绝。可以通过英文双引号来突出事件！"
-            event_name1 = re.findall(pattern1, text4)[0]
-            event_name2 = re.findall(pattern2, text4)[0]
+            event_name1 = re.findall(pattern1, text)[0]
+            event_name2 = re.findall(pattern2, text)[0]
             name = event_name1 if len(event_name1) > len(event_name2) else event_name2
         return name, True, ""
     except ValueError or RuntimeError:
