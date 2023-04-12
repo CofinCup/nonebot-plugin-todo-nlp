@@ -16,6 +16,17 @@ def get_time_from_text(text: str) -> (Union[str, None], bool, str):
     except ValueError or RuntimeError:
         return None, False, "没有看到时间，拒绝。"
 
+    
+# 重排序，使关键词按照在句中出现的顺序排列
+def kws_sort(kws, tx):
+    # 初始化结果列表
+    result = []
+    # 遍历单词列表，将包含关键字的单词添加到结果列表中
+    for word in tx:
+        for keyword in kws:
+            if keyword[0] in word:
+                result.append(keyword)
+    return result
 
 def get_name_from_text(text: str) -> (Union[str, None], bool, str):
     try:
@@ -24,6 +35,7 @@ def get_name_from_text(text: str) -> (Union[str, None], bool, str):
         else:
             sp_wd = psg.lcut(text)
             keyphrases = jio.keyphrase.extract_keyphrase(text)
+            keyphrases = kws_sort(kws=keyphrases, tx=text)
             flag = 0
             second_v = "去"
             for w,p in sp_wd:
