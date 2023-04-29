@@ -1,13 +1,18 @@
-from typing import AnyStr, List
+import nonebot
 import jionlp as jio
 import jieba.posseg as psg
+import jieba
 from typing import Union
 import re
 import time
+from .config import Config
+
+global_config = nonebot.get_driver().config
+plugin_config = Config(**global_config.dict())
 
 def get_time_from_text(text: str) -> (Union[str, None], bool, str):
     try:
-        res: dict = jio.parse_time(text,time.time())
+        res: dict = jio.parse_time(text, time.time())
         if res['type'] == 'time_point':
             time_point: str = res['time'][0][0:10]
             return time_point, True, ""
@@ -17,31 +22,64 @@ def get_time_from_text(text: str) -> (Union[str, None], bool, str):
         return None, False, "没有看到时间，拒绝。"
 
 
+def keyword_rearrange(keywords, text):
+    # 初始化结果列表
+    keyword_indices = {}
+    # 遍历单词列表，将包含关键字的单词添加到结果列表中
+    for keyword in keywords:
+        index = text.find(keyword)
+        if index != -1:  # if the keyword is found in the sentence
+            keyword_indices[keyword] = index
+
+        # sort the keywords based on their first occurrence index
+    sorted_keywords = sorted(keyword_indices, key=keyword_indices.get)
+    return sorted_keywords
+
+
 def get_name_from_text(text: str) -> (Union[str, None], bool, str):
     try:
         if "\"" in text:
             name = "".join(re.findall(r'[\"](.*?)[\"]', text))
         else:
+            # 向分词词典中添加新词
+            for wd in plugin_config.todo_keywords:
+                jieba.add_word(wd)
+            # 去除特殊符号
+            text = text.replace("，", "").replace("。", "").replace("？", "").replace("！", "").replace("~", "")
             sp_wd = psg.lcut(text)
-            keyphrases = jio.keyphrase.extract_keyphrase(text)
+            key_phrases = jio.keyphrase.extract_keyphrase(text)
+            # 重排序，使关键词按照在句中出现的顺序排列
+            key_phrases = keyword_rearrange(keywords=key_phrases, text=text)
             flag = 0
+            # 寻找"提醒"后的第一个动词，默认为"去"
             second_v = "去"
-            for w,p in sp_wd:
+            for w, p in sp_wd:
                 if p == "v":
                     if flag == 0:
                         flag = 1
                     else:
                         second_v = w
                         break
-            pattern1 = f"{first_v}.*?{kw[-1]}"
-            if len(keyphrases) == 1:
-                pattern2 = f"{kw[0]}"
-            elif len(keyphrases) > 1:
-                pattern2 = f"{kw[0]}.*?{kw[-1]}"
+                # 去除时间相关的词
+                elif p == "t":
+                    if w in key_phrases:
+                        key_phrases.remove(w)
+            # 分情况处理
+            if len(key_phrases) == 1:
+                pattern2 = f"{key_phrases[0]}"
+            elif len(key_phrases) > 1:
+                pattern2 = f"{key_phrases[0]}.*?{key_phrases[-1]}"
             else:
                 return None, False, "未发现事件名，拒绝。可以通过英文双引号来突出事件！"
-            event_name1 = re.findall(pattern1, text4)[0]
-            event_name2 = re.findall(pattern2, text4)[0]
+            # 不论是否在句中出现，都只取首个动词后面的部分
+            pattern1 = f"{second_v}.*?{key_phrases[-1]}"
+
+            # 找不到就不找
+            try:
+                event_name1 = re.findall(pattern1, text)[0]
+            except IndexError:
+                event_name1 = ""
+            event_name2 = re.findall(pattern2, text)[0]
             name = event_name1 if len(event_name1) > len(event_name2) else event_name2
         return name, True, ""
     except ValueError or RuntimeError:

@@ -19,6 +19,7 @@ class Config(BaseSettings):
     todo_groups: List[str] = []
 
     todo_send_time: List[Time] = []
+    todo_keywords: List[str] = []
 
     class Config:
         extra = Extra.allow
