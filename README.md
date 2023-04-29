@@ -37,7 +37,7 @@ pip install nonebot_plugin_todo_nlp
 #### 从 GitHub 安装（不推荐）
 
 ```
-git clone https://github.com/Jigsaw111/nonebot_plugin_todo.git
+git clone git@github.com:CofinCup/nonebot-plugin-todo-nlp.git
 ```
 
 ### 食用方法：
