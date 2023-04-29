@@ -62,11 +62,13 @@ git clone git@github.com:CofinCup/nonebot-plugin-todo-nlp.git
 在env中添加如同以下格式的配置（多个send time则多次推送，**注意时间首位去0！**）：\
 在群聊中使用时，只有管理员和群主可以增删todo项目。
 私聊情况下，好友均可使用todo增删功能，此处配置是推送名单。
+todo关键词是为了针对一部分不被jionlp识别为关键词的词汇。
 
 ```
 TODO_USERS=["1234567890"]
 TODO_GROUPS=["1234567890"]
 TODO_SEND_TIME=[{"HOUR":8,"MINUTE":0},{"HOUR":19,"MINUTE":34}]
+TODO_KEYWORDS=["上课"]
 ```
 
 ### TODO：
@@ -86,6 +88,8 @@ TODO_SEND_TIME=[{"HOUR":8,"MINUTE":0},{"HOUR":19,"MINUTE":34}]
 2023-1-20: 升级nonebot_plugin_apscheduler依赖
 
 2023-2-14: 修复相对时间的调用问题，pypi已发版
+
+2023-4-29：略微升级了nlp支持，pypi已发版
 
 ### 示例：
 
